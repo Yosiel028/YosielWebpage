@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'DM Serif Display', 'Playfair Display', Georgia, serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0f0e0d;
+    color: #e5dfd3;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-vintage-title {
+    font-family: var(--font-serif);
+  }
+
+  .font-retro-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* CRT Scanline & Grain FX */
+.crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  opacity: 0.85;
+}
+
+.crt-vignette {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8), inset 0 0 200px rgba(0,0,0,0.4);
+}
+
+/* Retro Paper Grain Noise effect */
+.vintage-grain {
+  background-image: radial-gradient(rgba(240, 230, 215, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Retro Stamp border */
+.retro-border {
+  border: 1px solid #3c3730;
+  box-shadow: 4px 4px 0px #090807;
+}
+
+.retro-border-cream {
+  border: 1px solid #c2b59b;
+  box-shadow: 4px 4px 0px #24201c;
+}
+
+.retro-tag {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+/* Custom Vintage Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #141210;
+}
+::-webkit-scrollbar-thumb {
+  background: #3c3730;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c29b62;
+}
