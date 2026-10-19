@@ -374,7 +374,7 @@ export default function ExperienceEducation({ lang, t, onSound }) {
               </span>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 font-sans text-xs text-[#d6cdbd]">
-                {t.professionalSkills.map(([skill]) => (
+                {t.professionalSkills.map((skill) => (
                   <div key={skill} className="flex items-center gap-2 p-2.5 bg-[#141210] rounded border border-[#2d2821]">
                     <CheckCircle size={14} className="text-[#c29b62] shrink-0" />
                     <span>{skill}</span>
