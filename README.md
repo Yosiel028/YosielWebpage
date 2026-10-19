@@ -34,6 +34,8 @@
 
 ## 🚀 Cómo Subir y Publicar en GitHub Pages
 
+El sitio de este repositorio se publica en [https://yosiel028.github.io/YosielWebpage/](https://yosiel028.github.io/YosielWebpage/) mediante GitHub Actions. En **Settings** > **Pages**, selecciona **GitHub Actions** como fuente de publicación.
+
 Este proyecto ya viene preconfigurado con:
 1. `base: './'` en `vite.config.js` para que los recursos se carguen sin errores en cualquier subdirectorio de GitHub.
 2. Un flujo de trabajo automático en `.github/workflows/deploy.yml`.
