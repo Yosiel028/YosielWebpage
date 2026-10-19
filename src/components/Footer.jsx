@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowUp, Heart, ExternalLink } from 'lucide-react';
 import yoshLogo from '../assets/logo/Yosh_cropped.png';
 
-export default function Footer({ onSound }) {
+export default function Footer({ t, onSound }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     onSound?.('click');
@@ -24,13 +24,13 @@ export default function Footer({ onSound }) {
             {/* Rights & Archival Info */}
             <div className="border-l border-[#3a3328] pl-5 space-y-0.5">
               <div className="text-sm font-bold tracking-widest text-[#dfd6c4]">
-                せけせとおせえぞ • 3D ART ARCHIVE
+                せけせとおせえぞ • {t.archiveLabel}
               </div>
               <div className="text-[10px] text-[#857b6c] uppercase">
-                ALL RIGHTS RESERVED TO YOSIEL ARMANDO SANDATE © 2026.
+                {t.rights}
               </div>
               <div className="text-[10px] text-[#c29b62]">
-                EST. 1989 VINTAGE SPIRIT • HOUSTON TX & SAN LUIS POTOSÍ MX
+                {t.location}
               </div>
             </div>
 
@@ -98,7 +98,7 @@ export default function Footer({ onSound }) {
         {/* Back to top */}
         <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#1e1b16] text-[#7a7062]">
           <div>
-            <span>Diseño & Arte 3D / 2D por </span>
+            <span>{t.byLine} </span>
             <span className="text-[#ded4c5] font-semibold">Yosiel Armando Sandate</span>
           </div>
 
@@ -106,13 +106,13 @@ export default function Footer({ onSound }) {
             onClick={scrollToTop}
             className="flex items-center gap-1.5 hover:text-[#c29b62] transition-colors"
           >
-            <span>Subir al Inicio</span>
+            <span>{t.scrollTop}</span>
             <ArrowUp size={13} />
           </button>
         </div>
 
         <div className="text-[11px] text-[#635a4d]">
-          Modelado en ZBrush, Substance Painter, Maya, Blender & Unreal Engine 5.
+          {t.techLine}
         </div>
 
       </div>

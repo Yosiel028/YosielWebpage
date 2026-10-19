@@ -198,14 +198,14 @@ const PROJECTS = [
 ];
 
 const CATEGORIES = [
-  { id: 'all', label: 'Todos los Trabajos' },
-  { id: '3d-modeling', label: 'Modelado 3D & Sculpting' },
-  { id: 'character-art', label: 'Personajes 3D' },
-  { id: 'game-art', label: 'Game Art (Oniric Mob)' },
-  { id: 'animation', label: 'Animación Digital' },
+  { id: 'all' },
+  { id: '3d-modeling' },
+  { id: 'character-art' },
+  { id: 'game-art' },
+  { id: 'animation' },
 ];
 
-export default function Gallery({ onSound }) {
+export default function Gallery({ t, onSound }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
@@ -228,14 +228,14 @@ export default function Gallery({ onSound }) {
           <div>
             <div className="flex items-center gap-2 font-retro-mono text-xs text-[#c29b62] tracking-widest uppercase mb-2">
               <span className="w-2 h-2 rounded-full bg-[#c29b62]"></span>
-              <span>PORTAFOLIO OFICIAL • TRABAJOS PERSONALES & COMERCIALES</span>
+              <span>{t.tag}</span>
             </div>
             <h2 className="font-serif text-4xl sm:text-5xl text-[#f6f0e4] font-normal tracking-tight">
-              Obras 3D, Personajes & Animación
+              {t.title}
             </h2>
           </div>
           <p className="max-w-md text-sm text-[#a89e90] font-sans leading-relaxed">
-            Trabajos personales y de estudio: escultura digital en ZBrush, modelos de personajes, rigs de animación 2D y pipelines completos para videojuegos y producciones cinematográficas.
+            {t.projectIntro}
           </p>
         </div>
 
@@ -254,7 +254,7 @@ export default function Gallery({ onSound }) {
                   : 'bg-[#1a1816] text-[#b3a898] hover:text-[#f6f0e4] border border-[#332e27]'
               }`}
             >
-              {cat.label}
+              {t.categories[cat.id]}
             </button>
           ))}
         </div>
@@ -292,7 +292,7 @@ export default function Gallery({ onSound }) {
                   <div className="p-6 text-center space-y-2">
                     <Film size={36} className="text-[#c29b62] mx-auto opacity-70" />
                     <span className="font-retro-mono text-xs text-[#a99e8f] block">
-                      Cortometraje & Dirección de Arte
+                      {t.cinematicFallback}
                     </span>
                   </div>
                 )}
@@ -302,7 +302,7 @@ export default function Gallery({ onSound }) {
 
                 {/* Top Category Badge */}
                 <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 bg-[#121110]/90 backdrop-blur-md rounded border border-[#3c362c] text-[10px] font-retro-mono text-[#c29b62]">
-                  <span>{project.categoryLabel}</span>
+                  <span>{t.projectCategories[project.id] || project.categoryLabel}</span>
                 </div>
 
                 {/* Year Pill */}
@@ -313,7 +313,7 @@ export default function Gallery({ onSound }) {
                 {/* Hover overlay hint */}
                 <div className="absolute inset-0 bg-[#121110]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-xs font-retro-mono text-[#f6f0e4]">
                   <Eye size={18} className="text-[#c29b62]" />
-                  <span>Inspeccionar Proyecto</span>
+                  <span>{t.inspect}</span>
                 </div>
               </div>
 
@@ -321,13 +321,13 @@ export default function Gallery({ onSound }) {
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <h3 className="font-serif text-xl text-[#f6f0e4] group-hover:text-[#c29b62] transition-colors mb-2 leading-snug">
-                    {project.title}
+                    {t.projectTitles[project.id] || project.title}
                   </h3>
                   
                   {/* ONLY show description if provided in user document; do NOT show any default fake description */}
                   {project.description ? (
                     <p className="text-xs text-[#a39889] font-sans line-clamp-3 mb-4 leading-relaxed">
-                      {project.description}
+                      {project.id === 'seed-hero' ? t.seedHeroDesc : project.description}
                     </p>
                   ) : null}
                 </div>
@@ -346,7 +346,7 @@ export default function Gallery({ onSound }) {
                   </div>
                   {project.gallery.length > 1 && (
                     <span className="text-[10px] font-retro-mono text-[#7a7062]">
-                      +{project.gallery.length} vistas
+                      +{project.gallery.length} {t.views}
                     </span>
                   )}
                 </div>
@@ -367,6 +367,8 @@ export default function Gallery({ onSound }) {
                 setSelectedProject(null);
                 onSound?.('click');
               }}
+              aria-label={t.close}
+              title={t.close}
               className="absolute top-5 right-5 p-2 rounded-full bg-[#24211d] hover:bg-[#332e28] text-[#c7beaf] hover:text-white transition-colors"
             >
               <X size={20} />
@@ -375,12 +377,12 @@ export default function Gallery({ onSound }) {
             {/* Modal Header */}
             <div className="mb-6 pr-10">
               <div className="flex items-center gap-2 font-retro-mono text-xs text-[#c29b62] mb-1">
-                <span>{selectedProject.categoryLabel}</span>
+                <span>{t.projectCategories[selectedProject.id] || selectedProject.categoryLabel}</span>
                 <span>•</span>
                 <span>{selectedProject.year}</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#f6f0e4] font-normal">
-                {selectedProject.title}
+                {t.projectTitles[selectedProject.id] || selectedProject.title}
               </h2>
             </div>
 
@@ -415,7 +417,7 @@ export default function Gallery({ onSound }) {
               ) : (
                 <div className="p-8 text-center text-[#a39889] font-sans">
                   <Film size={40} className="text-[#c29b62] mx-auto mb-2 opacity-80" />
-                  <p>Producción cinematográfica con actores reales y composición 3D</p>
+                  <p>{t.cinematicFallback}</p>
                 </div>
               )}
             </div>
@@ -437,7 +439,7 @@ export default function Gallery({ onSound }) {
                     }`}
                   >
                     {media.type === 'video' ? <Play size={11} className="fill-current" /> : <Eye size={11} />}
-                    <span>{media.label || `Vista ${idx + 1}`}</span>
+                    <span>{t.mediaLabels[media.label] || media.label || `${t.mediaView} ${idx + 1}`}</span>
                   </button>
                 ))}
               </div>
@@ -449,14 +451,14 @@ export default function Gallery({ onSound }) {
                 {/* ONLY render description if provided in user document */}
                 {selectedProject.description ? (
                   <>
-                    <h4 className="font-serif text-lg text-[#f0e8db] mb-2">Descripción</h4>
+                    <h4 className="font-serif text-lg text-[#f0e8db] mb-2">{t.modalDescTitle}</h4>
                     <p className="text-sm text-[#b5aa9b] font-sans leading-relaxed mb-4">
-                      {selectedProject.description}
+                      {selectedProject.id === 'seed-hero' ? t.seedHeroDesc : selectedProject.description}
                     </p>
                   </>
                 ) : (
                   <div className="text-xs font-retro-mono text-[#8a8172]">
-                    // TRABAJO PERSONAL • MODELADO & ARTE DIGITAL
+                    {t.modalPersonalTag}
                   </div>
                 )}
               </div>
@@ -464,7 +466,7 @@ export default function Gallery({ onSound }) {
               {/* Sidebar */}
               <div className="p-4 bg-[#1e1b18] rounded-lg border border-[#342e26] font-retro-mono text-xs space-y-3">
                 <div>
-                  <span className="text-[#8a8072] block text-[10px] uppercase">Software Empleado</span>
+                  <span className="text-[#8a8072] block text-[10px] uppercase">{t.modalSoftware}</span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {selectedProject.software.map((s, i) => (
                       <span key={i} className="px-2 py-0.5 bg-[#29241f] text-[#c29b62] rounded text-[11px]">
@@ -483,7 +485,7 @@ export default function Gallery({ onSound }) {
                     }}
                     className="block text-center py-2 bg-[#c29b62] hover:bg-[#d6af75] text-[#121110] font-bold rounded transition-colors text-xs uppercase font-retro-mono"
                   >
-                    Cotizar Proyecto Similar
+                    {t.modalQuote}
                   </a>
                 </div>
               </div>

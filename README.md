@@ -19,6 +19,8 @@
 - 🖼️ **Galería & Catálogo de Obras**:
   - Filtro interactivo por categorías (Modelado 3D, Game Art para Unreal Engine, Animación 2D/3D, Carteles Vintage).
   - Modal de inspección con desglose técnico (polycounts, mapas 4K, pipelines).
+- 🌐 **Interfaz bilingüe**:
+  - Cambia entre español e inglés desde el botón de idioma en la barra superior; la preferencia se guarda en el navegador.
 - 📜 **Sección Especial de Pósters Vintage**:
   - Homenaje a la publicidad impresa de 1989 y la nostalgia de los 90s con desglose de paletas cromáticas.
 - 💼 **Dossier de Trayectoria & Habilidades**:

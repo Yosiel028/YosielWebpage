@@ -14,18 +14,17 @@ export default function App() {
   const [crtEnabled, setCrtEnabled] = useState(true);
   const [lang, setLang] = useState(() => {
     try {
-      return localStorage.getItem('yosiel_lang') || 'es';
+      return localStorage.getItem('yosiel_lang') === 'en' ? 'en' : 'es';
     } catch {
       return 'es';
     }
   });
 
   useEffect(() => {
+    document.documentElement.lang = lang;
     try {
       localStorage.setItem('yosiel_lang', lang);
-    } catch (e) {
-      // ignore
-    }
+    } catch {}
   }, [lang]);
 
   const handleSound = (type = 'click') => {
@@ -75,7 +74,6 @@ export default function App() {
 
           <ExperienceEducation
             lang={lang}
-            setLang={setLang}
             t={t.experience}
             onSound={handleSound}
           />

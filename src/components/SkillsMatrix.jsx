@@ -58,7 +58,7 @@ const SOFTWARE_STACK = [
   },
 ];
 
-export default function SkillsMatrix({ onSound }) {
+export default function SkillsMatrix({ t, onSound }) {
   return (
     <section id="skills" className="py-20 px-4 md:px-8 border-b border-[#2b2721] bg-[#141210]">
       <div className="max-w-7xl mx-auto">
@@ -67,18 +67,18 @@ export default function SkillsMatrix({ onSound }) {
           <div>
             <div className="flex items-center gap-2 font-retro-mono text-xs text-[#c29b62] tracking-widest uppercase mb-2">
               <Terminal size={14} />
-              <span>STACK DE SOFTWARE OFICIAL (DEL CV)</span>
+              <span>{t.tag}</span>
             </div>
             <h2 className="font-serif text-4xl sm:text-5xl text-[#f6efe3] font-normal tracking-tight">
-              Programas de Trabajo & Habilidades
+              {t.title}
             </h2>
           </div>
           <div className="p-3 bg-[#1e1a15] border border-[#c29b62]/40 rounded-lg text-left max-w-md">
             <span className="font-pixel text-xs text-[#dfcca5] block mb-1">
-              ★ DESTACADO: CREACIÓN DE PERSONAJES
+              {t.featuredTitle}
             </span>
             <p className="text-xs text-[#b8ada0] font-sans">
-              Enfoque integral en el diseño de personajes: desde el arte conceptual inicial y la escultura anatómica en ZBrush hasta el texturizado y la animación.
+              {t.featuredDesc}
             </p>
           </div>
         </div>
@@ -97,20 +97,20 @@ export default function SkillsMatrix({ onSound }) {
                     {sw.name}
                   </h3>
                   <span className="text-[10px] font-retro-mono px-2 py-0.5 rounded bg-[#24201a] text-[#c29b62] border border-[#3f382d]">
-                    {sw.highlight}
+                    {t.software[idx][1]}
                   </span>
                 </div>
                 <span className="text-[11px] font-retro-mono text-[#8a8070] block mb-2 uppercase">
-                  {sw.category}
+                  {t.software[idx][0]}
                 </span>
                 <p className="text-xs text-[#a39889] font-sans leading-relaxed">
-                  {sw.desc}
+                  {t.software[idx][2]}
                 </p>
               </div>
 
               <div className="mt-4 pt-3 border-t border-[#26211a] flex items-center justify-between text-[10px] font-retro-mono text-[#736a5e]">
                 <span>SOFT-0{idx + 1}</span>
-                <span className="text-emerald-400">● ACTIVO EN PRODUCCIÓN</span>
+                <span className="text-emerald-400">{t.statusActive}</span>
               </div>
             </div>
           ))}
@@ -120,41 +120,19 @@ export default function SkillsMatrix({ onSound }) {
         <div className="p-6 bg-[#181613] border border-[#363026] rounded-xl text-left space-y-4">
           <div className="flex items-center gap-2 font-retro-mono text-xs text-[#c29b62] uppercase tracking-wider">
             <CheckCircle size={14} />
-            <span>Habilidades Profesionales y Personales Validadas (del CV)</span>
+            <span>{t.bannerTitle}</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-sans text-xs">
-            <div className="p-3 bg-[#13110f] border border-[#2b261f] rounded flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-[#c29b62]"></span>
-              <div>
-                <strong className="text-[#ded5c5] block">Trabajo en equipo</strong>
-                <span className="text-[#8e8474] text-[11px]">Coordinación fluida con artistas y directores</span>
+            {t.professionalSkills.map(([skill, description], idx) => (
+              <div key={skill} className="p-3 bg-[#13110f] border border-[#2b261f] rounded flex items-center gap-2.5">
+                <span className={`w-2 h-2 rounded-full ${['bg-[#c29b62]', 'bg-emerald-400', 'bg-amber-400', 'bg-sky-400'][idx]}`}></span>
+                <div>
+                  <strong className="text-[#ded5c5] block">{skill}</strong>
+                  <span className="text-[#8e8474] text-[11px]">{description}</span>
+                </div>
               </div>
-            </div>
-
-            <div className="p-3 bg-[#13110f] border border-[#2b261f] rounded flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              <div>
-                <strong className="text-[#ded5c5] block">Gestión de tiempo</strong>
-                <span className="text-[#8e8474] text-[11px]">Entregas puntuales y organización en sprints</span>
-              </div>
-            </div>
-
-            <div className="p-3 bg-[#13110f] border border-[#2b261f] rounded flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-              <div>
-                <strong className="text-[#ded5c5] block">Respeto, empatía y honestidad</strong>
-                <span className="text-[#8e8474] text-[11px]">Ética y comunicación transparente</span>
-              </div>
-            </div>
-
-            <div className="p-3 bg-[#13110f] border border-[#2b261f] rounded flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-sky-400"></span>
-              <div>
-                <strong className="text-[#ded5c5] block">Responsabilidad</strong>
-                <span className="text-[#8e8474] text-[11px]">Compromiso total con la visión de la obra</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 

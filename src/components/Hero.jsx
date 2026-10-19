@@ -19,7 +19,7 @@ const CHANNELS = [
   { id: 'halo', name: 'CH 06 // HALO DRINK', video: haloVideo, tag: 'Commercial 3D' },
 ];
 
-export default function Hero({ onSound }) {
+export default function Hero({ lang, t, onSound }) {
   const [currentChannelIndex, setCurrentChannelIndex] = useState(0);
   const [videoMuted, setVideoMuted] = useState(true);
   const videoRef = useRef(null);
@@ -50,13 +50,13 @@ export default function Hero({ onSound }) {
             <span className="px-2 py-0.5 bg-[#26221d] border border-[#3e382f] text-[#c29b62] font-bold rounded">
               VOL. 1990 - 2026
             </span>
-            <span>// ARCHIVO OFICIAL DE ARTE DIGITAL & 3D</span>
+            <span>{t.archiveRibbon}</span>
           </div>
 
           <div className="flex items-center gap-4 text-[11px]">
             <span className="flex items-center gap-1.5 text-[#cfc7b9]">
               <MapPin size={13} className="text-[#c29b62]" />
-              Houston, TX & San Luis Potosí, MX
+              {t.location}
             </span>
             <span className="text-[#595247] hidden sm:inline">•</span>
             <span className="hidden sm:inline text-[#a9a193]">
@@ -72,27 +72,24 @@ export default function Hero({ onSound }) {
           <div className="lg:col-span-5 flex flex-col justify-center text-left">
             {/* Title in Pixel Font matching reference */}
             <h1 className="font-pixel text-2xl sm:text-3xl xl:text-4xl leading-relaxed tracking-wide text-[#dfcca5] mb-5 selection:bg-[#c29b62]">
-              If you can<br />
-              dream it up, I<br />
-              can make it<br />
-              real!
+              {t.tagline}
             </h1>
 
             {/* Sub-lead with emphasis on character creation */}
             <p className="text-base sm:text-lg text-[#b8ada0] leading-relaxed mb-6 font-sans">
-              Hola, soy <strong className="text-[#f5eee3] font-semibold">Yosiel Armando Sandate</strong>. Artista 2D y modelador 3D <span className="text-[#c29b62] font-medium underline decoration-[#c29b62]/40">especializado en personajes</span>, animación y pipelines para videojuegos indie y cortometrajes.
+              {t.greeting} <strong className="text-[#f5eee3] font-semibold">Yosiel Armando Sandate</strong>. {lang === 'es' ? 'Artista 2D y modelador 3D' : '2D artist and 3D modeler'} <span className="text-[#c29b62] font-medium underline decoration-[#c29b62]/40">{t.bioHighlight}</span>{lang === 'es' ? ', animación y pipelines para videojuegos indie y cortometrajes.' : ', animation, and asset pipelines for indie games and short films.'}
             </p>
 
             {/* Pill highlights matching visual reference */}
             <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 mb-8 font-retro-mono text-xs text-[#d1c7b8]">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1b1916] border border-[#39342b] hover:border-[#c29b62] transition-colors w-fit">
-                <Box size={14} className="text-[#c29b62]" /> 3D Modeling & Sculpting
+                <Box size={14} className="text-[#c29b62]" /> {t.badge3d}
               </span>
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1b1916] border border-[#39342b] hover:border-amber-400 transition-colors w-fit">
-                <Film size={14} className="text-amber-400" /> 2D/3D Animation
+                <Film size={14} className="text-amber-400" /> {t.badgeAnim}
               </span>
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1b1916] border border-[#39342b] hover:border-emerald-400 transition-colors w-fit">
-                <Gamepad2 size={14} className="text-emerald-400" /> Indie Game Assets
+                <Gamepad2 size={14} className="text-emerald-400" /> {t.badgeGames}
               </span>
             </div>
 
@@ -103,7 +100,7 @@ export default function Hero({ onSound }) {
                 onClick={() => onSound?.('click')}
                 className="px-6 py-3.5 bg-[#cca76a] hover:bg-[#ddba80] text-[#121110] font-pixel text-xs tracking-wider uppercase rounded shadow-lg hover:shadow-[#c29b62]/20 transition-all flex items-center gap-2 border-2 border-[#eed5a1]"
               >
-                <span>Art Showcase</span>
+                <span>{t.btnShowcase}</span>
                 <span className="text-sm font-bold">⬇</span>
               </a>
 
@@ -113,7 +110,7 @@ export default function Hero({ onSound }) {
                 className="px-6 py-3.5 bg-[#1a1816] hover:bg-[#25221e] text-[#f0e9dd] border border-[#3d372e] font-retro-mono text-xs tracking-wider uppercase rounded transition-all flex items-center gap-2"
               >
                 <Send size={14} className="text-[#c29b62]" />
-                <span>Contactar</span>
+                <span>{t.btnContact}</span>
               </a>
 
               <a
@@ -122,10 +119,10 @@ export default function Hero({ onSound }) {
                 rel="noopener noreferrer"
                 onClick={() => onSound?.('click')}
                 className="px-4 py-3.5 bg-[#141210] hover:bg-[#221e1a] text-[#c29b62] border border-[#42392c] font-retro-mono text-xs tracking-wider uppercase rounded transition-all flex items-center gap-2"
-                title="Ver Demo Reel Oficial en YouTube"
+                title={t.showreelTitle}
               >
                 <Play size={13} className="fill-current" />
-                <span className="hidden sm:inline">Demo Reel</span>
+                <span className="hidden sm:inline">{t.btnDemoReel}</span>
                 <ExternalLink size={12} />
               </a>
             </div>
@@ -136,8 +133,8 @@ export default function Hero({ onSound }) {
                 90s
               </div>
               <div>
-                <div className="text-[#d9d0c1] font-semibold tracking-wide">ESTILO VINTAGE & RETRO GAMING</div>
-                <div className="text-[11px] text-[#938a7c]">Modelado en ZBrush, Substance Painter & Unreal Engine 5</div>
+                <div className="text-[#d9d0c1] font-semibold tracking-wide">{t.stampTitle}</div>
+                <div className="text-[11px] text-[#938a7c]">{t.stampSub}</div>
               </div>
             </div>
           </div>
@@ -149,12 +146,12 @@ export default function Hero({ onSound }) {
             <div className="w-full max-w-[620px] flex items-center justify-between pb-3 mb-2 font-retro-mono text-xs">
               <div className="flex items-center gap-2 px-3 py-1 bg-[#1b1916] border border-[#363028] rounded text-[#c29b62]">
                 <Tv size={14} />
-                <span>MONITOR CRT RETRO // ANIMACIONES</span>
+                <span>{t.tvHeader}</span>
               </div>
 
               {/* Hand-drawn style badge matching user reference sketch */}
               <div className="hidden sm:flex items-center gap-1.5 text-[#dfcca5] font-retro-mono text-[11px] animate-pulse">
-                <span>← Animaciones en la tv xd</span>
+                <span>{t.tvSticker}</span>
               </div>
             </div>
 
@@ -195,14 +192,14 @@ export default function Hero({ onSound }) {
                 </div>
 
                 <div className="absolute top-3 right-3 px-2 py-0.5 bg-black/75 border border-[#443e33] text-[#c29b62] font-retro-mono text-[10px] rounded backdrop-blur-sm pointer-events-none">
-                  {activeChannel.tag}
+                  {t.channelTags[currentChannelIndex]}
                 </div>
               </div>
 
               {/* CRT Monitor Outer Bezel (Sits on top with transparent glass window) */}
               <img
                 src={monitorBezel}
-                alt="Monitor CRT Retro"
+                alt={t.tvHeader}
                 className="relative z-10 w-full h-full object-contain pointer-events-none drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)]"
               />
 
@@ -236,7 +233,8 @@ export default function Hero({ onSound }) {
                       ? 'border-emerald-500/60 text-emerald-400 bg-emerald-950/30'
                       : 'border-[#3a342a] text-[#827869] hover:text-[#d3c9ba]'
                   }`}
-                  title={videoMuted ? 'Activar Sonido del Video' : 'Silenciar'}
+                  title={videoMuted ? t.videoUnmuteTitle : t.videoMuteTitle}
+                  aria-label={videoMuted ? t.videoUnmuteTitle : t.videoMuteTitle}
                 >
                   {!videoMuted ? <Volume2 size={15} /> : <VolumeX size={15} />}
                 </button>
