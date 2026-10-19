@@ -1,44 +1,60 @@
 import React from 'react';
-import { Box, Layers, Palette, Cpu, Film, Terminal, Check } from 'lucide-react';
+import { Box, Layers, Palette, Cpu, Film, Terminal, CheckCircle, Sparkles, Heart } from 'lucide-react';
 
-const SKILL_MODULES = [
+const SOFTWARE_STACK = [
   {
-    category: 'Escultura & Modelado 3D',
-    icon: Box,
-    items: [
-      { name: 'ZBrush', level: 'Avanzado', desc: 'Digital Sculpting orgánico y hard-surface, DynaMesh, ZRemesher.' },
-      { name: 'Modelado Low & High Poly', level: 'Especialidad', desc: 'Topología limpia para animación y videojuegos.' },
-      { name: 'Retopología & UVs', level: 'Avanzado', desc: 'Optimización de texel density y flujo de aristas.' },
-      { name: 'Maya / Blender', level: 'Avanzado', desc: 'Modelado poligonal, hard-surface y asset pipeline.' },
-    ],
+    name: 'ZBrush',
+    category: 'Esculpido Digital 3D',
+    highlight: 'Especialista en Personajes',
+    desc: 'Escultura digital orgánica de personajes, criaturas y accesorios hard-surface.',
   },
   {
-    category: 'Texturizado PBR & Lookdev',
-    icon: Palette,
-    items: [
-      { name: 'Substance 3D Painter', level: 'Avanzado', desc: 'Bake de mapas (Normal, Curvature, AO), texturizado procedural y stylized.' },
-      { name: 'Shaders & Materiales PBR', level: 'Intermedio+', desc: 'Refracción de vidrio, metales oxidados y piel con SSS.' },
-      { name: 'Pintura Digital & Texturas', level: 'Avanzado', desc: 'Hand-painted textures y estética retro noventera.' },
-      { name: 'Adobe Photoshop', level: 'Experto', desc: 'Edición de texturas, cartelería vintage y post-procesado.' },
-    ],
+    name: 'Blender',
+    category: 'Modelado & Entornos 3D',
+    highlight: 'Pipeline 3D',
+    desc: 'Modelado poligonal, nodos de geometría, shading y secuencias de cámara.',
   },
   {
-    category: 'Motores en Tiempo Real',
-    icon: Cpu,
-    items: [
-      { name: 'Unreal Engine 5', level: 'Avanzado', desc: 'Integración de assets, Material Graph, iluminación Lumen y Nanite.' },
-      { name: 'Game Art Pipeline', level: 'Especialidad', desc: 'Presupuestos de polígonos, LODs y colisiones en motor.' },
-      { name: 'Iluminación Cinemática', level: 'Avanzado', desc: 'Setups de tres puntos, iluminación de estudio y atmósferas retro.' },
-    ],
+    name: 'Autodesk Maya',
+    category: 'Modelado & Topología',
+    highlight: 'Estándar de Industria',
+    desc: 'Topología limpia para deformación en animación y rigging.',
   },
   {
-    category: 'Animación Digital 2D & 3D',
-    icon: Film,
-    items: [
-      { name: 'Toon Boom Harmony', level: 'Avanzado', desc: 'Cut-out rigging con Deformers, Master Controllers y animación 2D.' },
-      { name: 'Animación 3D de Personajes', level: 'Avanzado', desc: 'Ciclos de caminata, idle, combate y acting gestual.' },
-      { name: 'Storyboarding & Timing', level: 'Intermedio+', desc: 'Planificación secuencial de planos y ritmo de animación.' },
-    ],
+    name: '3D Substance Painter',
+    category: 'Texturizado PBR',
+    highlight: 'Shaders & Baking',
+    desc: 'Bakes de alta resolución, materiales PBR fotorrealistas y texturas estilizadas.',
+  },
+  {
+    name: 'Autodesk 3DsMax',
+    category: 'Escenarios & Shading',
+    highlight: 'Render de Producción',
+    desc: 'Composición de escenas arquitectónicas y vintage, iluminación avanzada.',
+  },
+  {
+    name: 'Toon Boom Harmony',
+    category: 'Animación 2D Digital',
+    highlight: 'Dibujo a Mano & Puppets',
+    desc: 'Animación cuadro a cuadro y publicidades animadas para Seed Hero.',
+  },
+  {
+    name: 'Adobe Photoshop',
+    category: 'Concept Art & Cartelería',
+    highlight: 'Post-Producción',
+    desc: 'Bocetaje de personajes, retoque de texturas y afiches noventeros.',
+  },
+  {
+    name: 'Adobe Premiere',
+    category: 'Edición & Montaje',
+    highlight: 'Demo Reel & Video',
+    desc: 'Cortes secuenciales, timing de cinemáticas y edición de turnarounds.',
+  },
+  {
+    name: 'Vray Chaos Phoenix',
+    category: 'Motor de Render & FX',
+    highlight: 'Iluminación Avanzada',
+    desc: 'Cálculo de iluminación global, cáusticas y texturizado para Believe.',
   },
 ];
 
@@ -51,77 +67,97 @@ export default function SkillsMatrix({ onSound }) {
           <div>
             <div className="flex items-center gap-2 font-retro-mono text-xs text-[#c29b62] tracking-widest uppercase mb-2">
               <Terminal size={14} />
-              <span>STACK DE SOFTWARE & COMPETENCIAS TÉCNICAS</span>
+              <span>STACK DE SOFTWARE OFICIAL (DEL CV)</span>
             </div>
             <h2 className="font-serif text-4xl sm:text-5xl text-[#f6efe3] font-normal tracking-tight">
-              Herramientas & Habilidades
+              Programas de Trabajo & Habilidades
             </h2>
           </div>
-          <p className="max-w-md text-sm text-[#a69c8e] font-sans">
-            Dominio de software estándar de la industria cinematográfica y de videojuegos, preparado para flujos de trabajo AAA e Indie.
-          </p>
-        </div>
-
-        {/* Modules Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-          {SKILL_MODULES.map((mod, idx) => {
-            const Icon = mod.icon;
-            return (
-              <div
-                key={idx}
-                onMouseEnter={() => onSound?.('click')}
-                className="p-5 bg-[#1a1815] rounded-xl border border-[#342e26] hover:border-[#c29b62]/70 transition-all hover:-translate-y-1 retro-border flex flex-col justify-between"
-              >
-                <div>
-                  {/* Module Header */}
-                  <div className="flex items-center gap-2.5 pb-4 mb-4 border-b border-[#2b261f]">
-                    <div className="p-2 bg-[#25211b] rounded border border-[#3d362a] text-[#c29b62]">
-                      <Icon size={18} />
-                    </div>
-                    <h3 className="font-serif text-lg text-[#f4eee3] leading-snug">
-                      {mod.category}
-                    </h3>
-                  </div>
-
-                  {/* Skills List */}
-                  <div className="space-y-4">
-                    {mod.items.map((item, i) => (
-                      <div key={i} className="group">
-                        <div className="flex items-center justify-between text-xs mb-1">
-                          <span className="font-retro-mono text-[#ded6c8] font-bold group-hover:text-[#c29b62] transition-colors">
-                            {item.name}
-                          </span>
-                          <span className="text-[10px] font-retro-mono px-1.5 py-0.5 rounded bg-[#27221c] text-[#a89d8c] border border-[#383126]">
-                            {item.level}
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-[#918778] font-sans leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Bottom decorative cartridge stamp */}
-                <div className="mt-6 pt-3 border-t border-[#26211a] flex items-center justify-between text-[10px] font-retro-mono text-[#786f62]">
-                  <span>MOD-0{idx + 1}</span>
-                  <span className="text-emerald-500/80">● VERIFIED</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Pipeline banner summary */}
-        <div className="mt-12 p-6 bg-[#1a1714] border border-[#342e25] rounded-xl flex flex-wrap items-center justify-between gap-4 font-retro-mono text-xs">
-          <div className="flex items-center gap-3">
-            <span className="w-3 h-3 rounded-full bg-[#c29b62]"></span>
-            <span className="text-[#f1ebe0]">PIPELINE ARTÍSTICO COMPLETO:</span>
-            <span className="text-[#a49989]">Concept → High Sculpt (ZBrush) → Low Poly (Retopo) → UVs → Texturing (Substance) → Rig & Anim → Engine (UE5)</span>
+          <div className="p-3 bg-[#1e1a15] border border-[#c29b62]/40 rounded-lg text-left max-w-md">
+            <span className="font-pixel text-xs text-[#dfcca5] block mb-1">
+              ★ DESTACADO: CREACIÓN DE PERSONAJES
+            </span>
+            <p className="text-xs text-[#b8ada0] font-sans">
+              Enfoque integral en el diseño de personajes: desde el arte conceptual inicial y la escultura anatómica en ZBrush hasta el texturizado y la animación.
+            </p>
           </div>
-          <span className="text-[#c29b62] font-bold">READY TO DEPLOY</span>
         </div>
+
+        {/* Software Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left mb-12">
+          {SOFTWARE_STACK.map((sw, idx) => (
+            <div
+              key={idx}
+              onMouseEnter={() => onSound?.('click')}
+              className="p-5 bg-[#191714] rounded-xl border border-[#342e26] hover:border-[#c29b62]/70 transition-all hover:-translate-y-1 retro-border flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-start justify-between gap-2 mb-2">
+                  <h3 className="font-serif text-xl text-[#f5efe3]">
+                    {sw.name}
+                  </h3>
+                  <span className="text-[10px] font-retro-mono px-2 py-0.5 rounded bg-[#24201a] text-[#c29b62] border border-[#3f382d]">
+                    {sw.highlight}
+                  </span>
+                </div>
+                <span className="text-[11px] font-retro-mono text-[#8a8070] block mb-2 uppercase">
+                  {sw.category}
+                </span>
+                <p className="text-xs text-[#a39889] font-sans leading-relaxed">
+                  {sw.desc}
+                </p>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-[#26211a] flex items-center justify-between text-[10px] font-retro-mono text-[#736a5e]">
+                <span>SOFT-0{idx + 1}</span>
+                <span className="text-emerald-400">● ACTIVO EN PRODUCCIÓN</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Personal & Professional Skills Banner from CV */}
+        <div className="p-6 bg-[#181613] border border-[#363026] rounded-xl text-left space-y-4">
+          <div className="flex items-center gap-2 font-retro-mono text-xs text-[#c29b62] uppercase tracking-wider">
+            <CheckCircle size={14} />
+            <span>Habilidades Profesionales y Personales Validadas (del CV)</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-sans text-xs">
+            <div className="p-3 bg-[#13110f] border border-[#2b261f] rounded flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-[#c29b62]"></span>
+              <div>
+                <strong className="text-[#ded5c5] block">Trabajo en equipo</strong>
+                <span className="text-[#8e8474] text-[11px]">Coordinación fluida con artistas y directores</span>
+              </div>
+            </div>
+
+            <div className="p-3 bg-[#13110f] border border-[#2b261f] rounded flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <div>
+                <strong className="text-[#ded5c5] block">Gestión de tiempo</strong>
+                <span className="text-[#8e8474] text-[11px]">Entregas puntuales y organización en sprints</span>
+              </div>
+            </div>
+
+            <div className="p-3 bg-[#13110f] border border-[#2b261f] rounded flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+              <div>
+                <strong className="text-[#ded5c5] block">Respeto, empatía y honestidad</strong>
+                <span className="text-[#8e8474] text-[11px]">Ética y comunicación transparente</span>
+              </div>
+            </div>
+
+            <div className="p-3 bg-[#13110f] border border-[#2b261f] rounded flex items-center gap-2.5">
+              <span className="w-2 h-2 rounded-full bg-sky-400"></span>
+              <div>
+                <strong className="text-[#ded5c5] block">Responsabilidad</strong>
+                <span className="text-[#8e8474] text-[11px]">Compromiso total con la visión de la obra</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

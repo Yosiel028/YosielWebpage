@@ -1,10 +1,43 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Pokemon Classic';
+  src: url('./assets/Fuentes/pokemon_classic/Pokemon Classic.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Minecraft';
+  src: url('./assets/Fuentes/minecraft/Minecraft.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url('./assets/Fuentes/Pixelify_Sans/static/PixelifySans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url('./assets/Fuentes/Pixelify_Sans/static/PixelifySans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arcade Classic';
+  src: url('./assets/Fuentes/arcadeclassic/ARCADECLASSIC.TTF') format('truetype');
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --font-serif: 'DM Serif Display', 'Playfair Display', Georgia, serif;
     --font-mono: 'Space Mono', monospace;
     --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-pixel: 'Pokemon Classic', 'Pixelify Sans', monospace;
   }
 
   body {
@@ -20,6 +53,22 @@
 
   .font-retro-mono {
     font-family: var(--font-mono);
+  }
+
+  .font-pixel {
+    font-family: 'Pokemon Classic', monospace;
+  }
+
+  .font-pixelify {
+    font-family: 'Pixelify Sans', monospace;
+  }
+
+  .font-minecraft {
+    font-family: 'Minecraft', monospace;
+  }
+
+  .font-arcade {
+    font-family: 'Arcade Classic', monospace;
   }
 }
 

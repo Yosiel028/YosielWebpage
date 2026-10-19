@@ -1,5 +1,6 @@
 import React from 'react';
 import { Volume2, VolumeX, Tv, Sparkles, FolderGit2 } from 'lucide-react';
+import logoImg from '../assets/logo/LogoSimplificado_cropped.png';
 
 export default function Navbar({
   soundEnabled,
@@ -17,15 +18,17 @@ export default function Navbar({
           onClick={() => onSound?.('click')}
           className="group flex items-center gap-3"
         >
-          <div className="w-9 h-9 rounded bg-[#c29b62] text-[#121110] font-black flex items-center justify-center text-lg font-serif border border-[#f0dfc2] group-hover:scale-105 transition-transform">
-            Y
+          <div className="w-10 h-10 rounded-lg bg-[#f4efe5] border-2 border-[#c29b62] flex items-center justify-center p-1 group-hover:scale-105 group-hover:shadow-[0_0_12px_rgba(194,155,98,0.5)] transition-all overflow-hidden shadow-md">
+            <img src={logoImg} alt="Yosh Logo" className="w-full h-full object-contain" />
           </div>
           <div className="text-left">
             <div className="font-serif text-lg tracking-wide text-[#f3ede2] group-hover:text-[#c29b62] transition-colors font-bold leading-tight">
               Yosiel Armando Sandate
             </div>
-            <div className="text-[10px] font-retro-mono tracking-widest text-[#9b9283] uppercase">
-              3D & 2D Artist • Digital Animator
+            <div className="text-[10px] font-retro-mono tracking-widest text-[#9b9283] uppercase flex items-center gap-1.5">
+              <span>3D & 2D Artist</span>
+              <span>•</span>
+              <span className="text-[#c29b62]">Character Specialist</span>
             </div>
           </div>
         </a>
@@ -45,13 +48,6 @@ export default function Navbar({
             className="hover:text-[#f3ede2] hover:border-b border-[#c29b62] pb-0.5 transition-colors"
           >
             // PORTAFOLIO 3D
-          </a>
-          <a
-            href="#vintage-ads"
-            onClick={() => onSound?.('click')}
-            className="hover:text-[#f3ede2] hover:border-b border-[#c29b62] pb-0.5 transition-colors"
-          >
-            // POSTERS VINTAGE
           </a>
           <a
             href="#experience"

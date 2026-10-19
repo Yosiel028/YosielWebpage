@@ -1,158 +1,241 @@
 import React, { useState } from 'react';
-import { Eye, ExternalLink, Sparkles, Layers, Box, Cpu, X, CheckCircle2 } from 'lucide-react';
+import { Eye, ExternalLink, Sparkles, Layers, Box, Cpu, X, Film, Play, Check } from 'lucide-react';
 
+// Eva 01
+import evaRender1 from '../assets/Portafolio/Eva 01/Render_1.jpg';
+import evaRender2 from '../assets/Portafolio/Eva 01/Render_2.jpg';
+import evaRender3 from '../assets/Portafolio/Eva 01/Render_3.jpg';
+import evaRender4 from '../assets/Portafolio/Eva 01/Render_4.jpg';
+import evaTurnaround from '../assets/Portafolio/Eva 01/VERTICAL -Eva Turnaround.mp4';
+
+// Kaiju n8
+import kaijuRender2 from '../assets/Portafolio/Kaiju n8/KaijuRender2.png';
+import kaijuRender1 from '../assets/Portafolio/Kaiju n8/Kaiju Render 1.jpg';
+import kaijuRender3 from '../assets/Portafolio/Kaiju n8/Kaiju Render 3.jpg';
+import kaijuTurnaround from '../assets/Portafolio/Kaiju n8/KaijuTurnAround-2.mp4';
+
+// Julieta
+import julietaRender1 from '../assets/Portafolio/Julieta/Render_1.jpg';
+import julietaRender2 from '../assets/Portafolio/Julieta/Render_2.jpg';
+import julietaTurnaround from '../assets/Portafolio/Julieta/Julieta_TurnAround.mp4';
+
+// Seed Hero
+import seedHeroVideo from '../assets/Portafolio/SeedHeroAnimaciones/OniricTeam_Characters.mp4';
+
+// Believe
+import believePoster from '../assets/Portafolio/Believe_3DsMaxScene/PosterConNombre.jpg';
+import believeMask from '../assets/Portafolio/Believe_3DsMaxScene/Yosiel_Mask_Details.jpg';
+import believeTrains from '../assets/Portafolio/Believe_3DsMaxScene/Yosiel_Trains_Details.jpg';
+
+// Tank Pilot
+import tankTurnaround from '../assets/Portafolio/TankPilot/TankDriver_TurnAroundWithShadows.jpg';
+import tankColor from '../assets/Portafolio/TankPilot/YOSIELTankDriverColorBase.jpg';
+import tankText from '../assets/Portafolio/TankPilot/YosielImperialDriver_Text.jpg';
+
+// Golden Brown
+import goldenVideo from '../assets/Portafolio/GoldenBrown/GoldenBrownScenario.mp4';
+
+// Halo Drink
+import haloVideo from '../assets/Portafolio/HaloDrink/Final_HaloDrinkYosh.mp4';
+
+// Perfume
+import perfume1 from '../assets/Portafolio/Perfume/Perdume -1.jpg';
+import perfume2 from '../assets/Portafolio/Perfume/Perfume - 2.jpg';
+import perfume3 from '../assets/Portafolio/Perfume/Perfume - 3.jpg';
+
+// Personal portfolio projects strictly from user files.
+// NO DEFAULT / FAKE DESCRIPTIONS ARE ADDED, as requested:
+// "elimina todas las descripciones por default y en caso de que yo no te indique poner una descripcion no la pongas solo completa con lo que te pase al documento"
 const PROJECTS = [
   {
-    id: 'flowerbomb',
-    title: 'Flowerbomb Viktor & Rolf — 3D Render',
+    id: 'kaiju-n8',
+    title: 'Kaiju No. 8',
     category: '3d-modeling',
-    categoryLabel: 'Modelado 3D & Shading',
-    year: '2025',
-    polycount: '64k tris',
-    software: ['Maya / Blender', 'Substance 3D Painter', 'Unreal Engine 5'],
-    image: './images/yosiel-profile.png',
-    crop: 'top', // uses the perfume bottle banner
-    aspect: 'video',
-    description: 'Renderización de producto de lujo inspirado en Viktor & Rolf Flowerbomb. Modelado facetado estilo granada de cristal, sellos metálicos grabados y refracción cáustica fotorrealista con iluminación dramática de estudio en tonos carmesí y negro obsidiana.',
-    views: {
-      final: './images/yosiel-profile.png',
-      clay: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
-    },
-    breakdown: [
-      'Topología optimizada con facetas diamantadas y biseles de alta definición.',
-      'Shaders PBR de vidrio con transmisión óptica y dispersión subsuperficial.',
-      'Sello metálico con acabado en bronce antiguo y micro-rayones procedurales.',
+    categoryLabel: 'Modelado 3D & Sculpting',
+    year: '2026',
+    software: ['ZBrush', 'Blender', 'Substance 3D Painter'],
+    thumbnail: kaijuRender2,
+    mediaType: 'video',
+    videoUrl: kaijuTurnaround,
+    gallery: [
+      { type: 'image', src: kaijuRender2, label: 'Render Principal' },
+      { type: 'video', src: kaijuTurnaround, label: 'Turnaround Video' },
+      { type: 'image', src: kaijuRender1, label: 'Vista Frontal' },
+      { type: 'image', src: kaijuRender3, label: 'Detalle de Armadura' },
     ],
+    description: '',
   },
   {
-    id: 'gameboy-vintage',
-    title: 'The 1989 Nintendo Game Boy — Vintage Ad Poster',
-    category: 'vintage-posters',
-    categoryLabel: 'Póster Vintage & 3D Hard-Surface',
-    year: '2024',
-    polycount: '32k tris',
-    software: ['ZBrush', 'Substance 3D Painter', 'Photoshop'],
-    image: './images/gameboy-vintage-ad.jpg',
-    description: 'Reconstrucción en 3D hard-surface de la icónica consola portátil Nintendo Game Boy de 1989 enmarcada en una pieza publicitaria editorial retro estilo revista noventera. Cuenta con textura de plástico ABS granulado, pantalla LCD con matriz de fósforo verdoso y tipografía serif clásica.',
-    views: {
-      final: './images/gameboy-vintage-ad.jpg',
-    },
-    breakdown: [
-      'Modelado de precisión de los botones biselados A/B y cruz direccional con rebajes ergonómicos.',
-      'Ranura trasera de cartucho Game Pak y rejilla inferior derecha de 6 ranuras acústicas.',
-      'Grano fotográfico analógico de 35mm y tipografía editorial de coleccionista.',
+    id: 'eva-01',
+    title: 'Evangelion Unit-01 (Eva 01)',
+    category: '3d-modeling',
+    categoryLabel: 'Modelado 3D & Mecha',
+    year: '2026',
+    software: ['Maya', 'Blender', 'Substance 3D Painter'],
+    thumbnail: evaRender1,
+    mediaType: 'video',
+    videoUrl: evaTurnaround,
+    gallery: [
+      { type: 'image', src: evaRender1, label: 'Render 01' },
+      { type: 'video', src: evaTurnaround, label: 'Turnaround Video' },
+      { type: 'image', src: evaRender2, label: 'Render 02' },
+      { type: 'image', src: evaRender3, label: 'Render 03' },
+      { type: 'image', src: evaRender4, label: 'Render 04' },
     ],
+    description: '',
   },
   {
-    id: 'mac-nostalgia',
-    title: 'Nineties Nostalgia — Vintage Macintosh Classic',
-    category: 'vintage-posters',
-    categoryLabel: 'Póster Vintage & Entornos 90s',
-    year: '2024',
-    polycount: '48k tris',
-    software: ['Blender', 'Substance 3D Painter', 'ZBrush'],
-    image: './images/mac-vintage-poster.png',
-    description: 'Homenaje a la era de la computación personal de los años 90. Modelado del ordenador clásico con pantalla CRT abombada, ranura de disquete 3.5 pulgadas, teclado mecánico con cable en espiral y carcasa con envejecimiento plástico beige cálido.',
-    views: {
-      final: './images/mac-vintage-poster.png',
-    },
-    breakdown: [
-      'Materiales de plástico ABS vintage envejecido con sutil pátina amarillenta por rayos UV.',
-      'Teclas mecánicas escalonadas con grabado vintage y resorte interno simulado.',
-      'Composición de póster con textura de papel prensa y tipografía serif retro.',
+    id: 'julieta',
+    title: 'Julieta',
+    category: 'character-art',
+    categoryLabel: 'Personajes & Animación',
+    year: '2026',
+    software: ['ZBrush', 'Blender', 'Substance 3D Painter'],
+    thumbnail: julietaRender1,
+    mediaType: 'video',
+    videoUrl: julietaTurnaround,
+    gallery: [
+      { type: 'image', src: julietaRender1, label: 'Render 01' },
+      { type: 'video', src: julietaTurnaround, label: 'Turnaround Video' },
+      { type: 'image', src: julietaRender2, label: 'Render 02' },
     ],
+    description: '',
   },
   {
-    id: 'oniric-game-art',
-    title: 'Oniric Mob — Personajes & Animación Indie Game',
+    id: 'seed-hero',
+    title: 'Seed Hero (Oniric Mob)',
     category: 'game-art',
-    categoryLabel: 'Game Art & Videojuegos Indie',
+    categoryLabel: 'Animación 2D & Game Art',
     year: '2024 - 2026',
-    polycount: '18k tris (Game Ready)',
-    software: ['Unreal Engine 5', 'ZBrush', 'Toon Boom Harmony'],
-    image: './images/yosiel-experience.png',
-    description: 'Activos de personajes y animaciones 3D/2D para proyectos independientes en Oniric Mob. Creación de rigs dinámicos, ciclos de locomoción (Run, Walk, Attack), optimización de texturas atlas y shaders estilizados en tiempo real.',
-    views: {
-      final: './images/yosiel-experience.png',
-    },
-    breakdown: [
-      'Topología con loops ideales para deformación anatómica y codos/rodillas articulados.',
-      'Mapas Normal, Roughness, Metallic y Curvature integrados en Unreal Engine 5.',
-      'Animación de combate y expresiones faciales tanto en 3D como soporte 2D.',
+    software: ['Toon Boom Harmony', 'Adobe Photoshop', 'Steam'],
+    thumbnail: null,
+    mediaType: 'video',
+    videoUrl: seedHeroVideo,
+    gallery: [
+      { type: 'video', src: seedHeroVideo, label: 'Animaciones de Personajes' },
     ],
+    // Authentic description from CV:
+    description: 'Se trabajó animando personajes principales, npc\'s y objetos empleando Toon Boom Harmony con dibujos a mano para el juego de ritmo independiente ya en Steam "Seed Hero". Haciendo uso de los personajes del mismo juego, se crearon publicidades animadas para redes y eventos.',
   },
   {
-    id: 'digital-sculpt-creature',
-    title: 'Digital Sculpting — Criatura & Anatomía ZBrush',
+    id: 'believe-scene',
+    title: 'Believe — 3Ds Max Scene',
     category: '3d-modeling',
-    categoryLabel: 'Digital Sculpting',
-    year: '2024',
-    polycount: '3.8M polys (High-Res Sculpt)',
-    software: ['ZBrush', 'Substance 3D Painter', 'Marmoset Toolbag'],
-    image: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1200&q=80',
-    description: 'Esculpido digital orgánico en ZBrush explorando anatomía muscular compleja, texturas de piel escamosa y detalles de micro-poros. Preparado para pipeline de baking High-to-Low Poly.',
-    views: {
-      final: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1200&q=80',
-    },
-    breakdown: [
-      'DynaMesh a ZRemesher con retopología manual en zonas críticas.',
-      'Bake de mapas de Normales de 4K preservando cada detalle de 3 millones de polígonos.',
-      'Lookdev con luz cálida de tres puntos.',
+    categoryLabel: 'Escenarios 3D & Shading',
+    year: '2026',
+    software: ['Autodesk 3DsMax', 'Vray Chaos Phoenix', 'Photoshop'],
+    thumbnail: believePoster,
+    mediaType: 'image',
+    gallery: [
+      { type: 'image', src: believePoster, label: 'Póster Escenario Completo' },
+      { type: 'image', src: believeMask, label: 'Detalles de Máscara' },
+      { type: 'image', src: believeTrains, label: 'Detalles de Trenes' },
     ],
+    description: '',
   },
   {
-    id: 'toon-animation-rig',
-    title: 'Toon Boom Harmony — Animación & Cut-Out Rigging',
-    category: 'animation',
-    categoryLabel: 'Animación 2D Digital',
-    year: '2023 - 2025',
-    polycount: 'Vector Rig',
-    software: ['Toon Boom Harmony', 'Storyboarding', 'Clip Studio'],
-    image: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80',
-    description: 'Producción de animación digital con técnicas combinadas de dibujo cuadro a cuadro (frame-by-frame) y puppets articulados en Toon Boom Harmony para cortometrajes y secuencias cinemáticas.',
-    views: {
-      final: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80',
-    },
-    breakdown: [
-      'Master Controllers y Deformers de curva/envolvente para rotación de cabezas fluida.',
-      'Limpieza de líneas vectoriales con texturas de lápiz analógico.',
-      'Sincronización labial (Lip-sync) y acting emocional en escenas clave.',
+    id: 'tank-pilot',
+    title: 'Imperial Tank Pilot',
+    category: '3d-modeling',
+    categoryLabel: 'Modelado 3D & Personajes',
+    year: '2026',
+    software: ['ZBrush', 'Substance 3D Painter'],
+    thumbnail: tankTurnaround,
+    mediaType: 'image',
+    gallery: [
+      { type: 'image', src: tankTurnaround, label: 'Turnaround con Sombras' },
+      { type: 'image', src: tankColor, label: 'Color Base' },
+      { type: 'image', src: tankText, label: 'Texturizado' },
     ],
+    description: '',
+  },
+  {
+    id: 'golden-brown',
+    title: 'Golden Brown',
+    category: 'animation',
+    categoryLabel: 'Animación & Escenarios',
+    year: '2026',
+    software: ['Blender', 'Adobe Premiere'],
+    thumbnail: null,
+    mediaType: 'video',
+    videoUrl: goldenVideo,
+    gallery: [
+      { type: 'video', src: goldenVideo, label: 'Secuencia Golden Brown' },
+    ],
+    description: '',
+  },
+  {
+    id: 'halo-drink',
+    title: 'Halo Drink — Publicidad 3D',
+    category: 'animation',
+    categoryLabel: 'Animación 3D Comercial',
+    year: '2026',
+    software: ['Blender', 'Substance 3D Painter', 'After Effects'],
+    thumbnail: null,
+    mediaType: 'video',
+    videoUrl: haloVideo,
+    gallery: [
+      { type: 'video', src: haloVideo, label: 'Spot Final Halo Drink' },
+    ],
+    description: '',
+  },
+  {
+    id: 'perfume',
+    title: 'Perfume Render',
+    category: '3d-modeling',
+    categoryLabel: 'Modelado 3D & Producto',
+    year: '2026',
+    software: ['Blender / Maya', 'Substance 3D Painter'],
+    thumbnail: perfume1,
+    mediaType: 'image',
+    gallery: [
+      { type: 'image', src: perfume1, label: 'Render 01' },
+      { type: 'image', src: perfume2, label: 'Render 02' },
+      { type: 'image', src: perfume3, label: 'Render 03' },
+    ],
+    description: '',
   },
 ];
 
 const CATEGORIES = [
   { id: 'all', label: 'Todos los Trabajos' },
   { id: '3d-modeling', label: 'Modelado 3D & Sculpting' },
-  { id: 'game-art', label: 'Game Art (Unreal Engine)' },
-  { id: 'animation', label: 'Animación 2D/3D' },
-  { id: 'vintage-posters', label: 'Pósters Retro 90s' },
+  { id: 'character-art', label: 'Personajes 3D' },
+  { id: 'game-art', label: 'Game Art (Oniric Mob)' },
+  { id: 'animation', label: 'Animación Digital' },
 ];
 
 export default function Gallery({ onSound }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
 
   const filteredProjects = activeCategory === 'all'
     ? PROJECTS
     : PROJECTS.filter((p) => p.category === activeCategory);
 
+  const handleOpenProject = (project) => {
+    setSelectedProject(project);
+    setActiveMediaIndex(0);
+    onSound?.('beep');
+  };
+
   return (
     <section id="projects" className="py-20 px-4 md:px-8 border-b border-[#2b2721] bg-[#11100e]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 text-left">
           <div>
             <div className="flex items-center gap-2 font-retro-mono text-xs text-[#c29b62] tracking-widest uppercase mb-2">
               <span className="w-2 h-2 rounded-full bg-[#c29b62]"></span>
-              <span>CATÁLOGO SELECCIONADO</span>
+              <span>PORTAFOLIO OFICIAL • TRABAJOS PERSONALES & COMERCIALES</span>
             </div>
             <h2 className="font-serif text-4xl sm:text-5xl text-[#f6f0e4] font-normal tracking-tight">
-              Obras 3D & Creación Digital
+              Obras 3D, Personajes & Animación
             </h2>
           </div>
           <p className="max-w-md text-sm text-[#a89e90] font-sans leading-relaxed">
-            Una colección de proyectos de modelado hard-surface, esculpido orgánico, arte para videojuegos indie y cartelería editorial vintage inspirada en los años 90.
+            Trabajos personales y de estudio: escultura digital en ZBrush, modelos de personajes, rigs de animación 2D y pipelines completos para videojuegos y producciones cinematográficas.
           </p>
         </div>
 
@@ -177,31 +260,47 @@ export default function Gallery({ onSound }) {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              onClick={() => {
-                setSelectedProject(project);
-                onSound?.('beep');
-              }}
-              className="group cursor-pointer bg-[#171513] border border-[#2e2a23] hover:border-[#c29b62]/60 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#000000]/60 flex flex-col"
+              onClick={() => handleOpenProject(project)}
+              className="group cursor-pointer bg-[#171513] border border-[#2e2a23] hover:border-[#c29b62]/70 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/70 flex flex-col"
             >
-              {/* Image Preview Container */}
-              <div className="relative aspect-[4/3] w-full bg-[#0d0c0b] overflow-hidden border-b border-[#29251f]">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${
-                    project.crop === 'top' ? 'object-top' : 'object-center'
-                  }`}
-                  loading="lazy"
-                />
+              {/* Media Preview Container */}
+              <div className="relative aspect-[4/3] w-full bg-[#0a0908] overflow-hidden border-b border-[#29251f] flex items-center justify-center">
+                {project.thumbnail ? (
+                  <img
+                    src={project.thumbnail}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                ) : project.videoUrl ? (
+                  <div className="relative w-full h-full bg-black flex items-center justify-center">
+                    <video
+                      src={project.videoUrl}
+                      muted
+                      loop
+                      autoPlay
+                      playsInline
+                      className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+                  </div>
+                ) : (
+                  <div className="p-6 text-center space-y-2">
+                    <Film size={36} className="text-[#c29b62] mx-auto opacity-70" />
+                    <span className="font-retro-mono text-xs text-[#a99e8f] block">
+                      Cortometraje & Dirección de Arte
+                    </span>
+                  </div>
+                )}
 
                 {/* Vintage Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#141210] via-transparent to-transparent opacity-60"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141210] via-transparent to-transparent opacity-60 pointer-events-none"></div>
 
-                {/* Top Badge */}
+                {/* Top Category Badge */}
                 <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 bg-[#121110]/90 backdrop-blur-md rounded border border-[#3c362c] text-[10px] font-retro-mono text-[#c29b62]">
                   <span>{project.categoryLabel}</span>
                 </div>
@@ -224,26 +323,32 @@ export default function Gallery({ onSound }) {
                   <h3 className="font-serif text-xl text-[#f6f0e4] group-hover:text-[#c29b62] transition-colors mb-2 leading-snug">
                     {project.title}
                   </h3>
-                  <p className="text-xs text-[#a39889] font-sans line-clamp-2 mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
+                  
+                  {/* ONLY show description if provided in user document; do NOT show any default fake description */}
+                  {project.description ? (
+                    <p className="text-xs text-[#a39889] font-sans line-clamp-3 mb-4 leading-relaxed">
+                      {project.description}
+                    </p>
+                  ) : null}
                 </div>
 
                 {/* Software tags */}
-                <div className="pt-3 border-t border-[#26221c] flex flex-wrap items-center justify-between gap-2">
+                <div className="pt-3 border-t border-[#26221c] flex flex-wrap items-center justify-between gap-2 mt-auto">
                   <div className="flex flex-wrap gap-1.5">
                     {project.software.map((sw, idx) => (
                       <span
                         key={idx}
-                        className="text-[10px] font-retro-mono px-2 py-0.5 rounded bg-[#1e1b18] text-[#9c9181] border border-[#342e26]"
+                        className="text-[10px] font-retro-mono px-2 py-0.5 rounded bg-[#1e1b18] text-[#c29b62] border border-[#342e26]"
                       >
                         {sw}
                       </span>
                     ))}
                   </div>
-                  <span className="text-[11px] font-retro-mono text-[#c29b62]">
-                    {project.polycount}
-                  </span>
+                  {project.gallery.length > 1 && (
+                    <span className="text-[10px] font-retro-mono text-[#7a7062]">
+                      +{project.gallery.length} vistas
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -251,7 +356,7 @@ export default function Gallery({ onSound }) {
         </div>
       </div>
 
-      {/* Modal Inspector for Project Details */}
+      {/* Modal Inspector for Project Details & Media Showcase */}
       {selectedProject && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-[#171513] border border-[#3d372e] rounded-xl shadow-2xl p-6 sm:p-8 text-left">
@@ -273,43 +378,90 @@ export default function Gallery({ onSound }) {
                 <span>{selectedProject.categoryLabel}</span>
                 <span>•</span>
                 <span>{selectedProject.year}</span>
-                <span>•</span>
-                <span className="text-[#8e8577]">{selectedProject.polycount}</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl text-[#f6f0e4] font-normal">
                 {selectedProject.title}
               </h2>
             </div>
 
-            {/* Main Showcase Image Preview */}
-            <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-[#363028] bg-black mb-6">
-              <img
-                src={selectedProject.image}
-                alt={selectedProject.title}
-                className="w-full h-full object-contain"
-              />
+            {/* Main Showcase Viewer (Image or Video) */}
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-[#363028] bg-black mb-4 flex items-center justify-center">
+              {selectedProject.gallery.length > 0 ? (
+                selectedProject.gallery[activeMediaIndex]?.type === 'video' ? (
+                  <video
+                    key={selectedProject.gallery[activeMediaIndex].src}
+                    src={selectedProject.gallery[activeMediaIndex].src}
+                    controls
+                    autoPlay
+                    loop
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <img
+                    key={selectedProject.gallery[activeMediaIndex].src}
+                    src={selectedProject.gallery[activeMediaIndex].src}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-contain"
+                  />
+                )
+              ) : selectedProject.videoUrl ? (
+                <video
+                  src={selectedProject.videoUrl}
+                  controls
+                  autoPlay
+                  loop
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <div className="p-8 text-center text-[#a39889] font-sans">
+                  <Film size={40} className="text-[#c29b62] mx-auto mb-2 opacity-80" />
+                  <p>Producción cinematográfica con actores reales y composición 3D</p>
+                </div>
+              )}
             </div>
 
-            {/* Project Details Grid */}
+            {/* Multi-view Thumbnails Strip */}
+            {selectedProject.gallery.length > 1 && (
+              <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6">
+                {selectedProject.gallery.map((media, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setActiveMediaIndex(idx);
+                      onSound?.('click');
+                    }}
+                    className={`px-3 py-1.5 rounded text-xs font-retro-mono transition-all flex items-center gap-1.5 shrink-0 ${
+                      activeMediaIndex === idx
+                        ? 'bg-[#c29b62] text-[#121110] font-bold shadow'
+                        : 'bg-[#221f1a] text-[#a99e8d] hover:text-[#f3eee4] border border-[#3a3329]'
+                    }`}
+                  >
+                    {media.type === 'video' ? <Play size={11} className="fill-current" /> : <Eye size={11} />}
+                    <span>{media.label || `Vista ${idx + 1}`}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Details and Software */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-[#2d2821]">
               <div className="md:col-span-2">
-                <h4 className="font-serif text-lg text-[#f0e8db] mb-2">Descripción del Proyecto</h4>
-                <p className="text-sm text-[#b5aa9b] font-sans leading-relaxed mb-4">
-                  {selectedProject.description}
-                </p>
-
-                <h4 className="font-serif text-lg text-[#f0e8db] mb-2">Desglose Técnico & Pipeline</h4>
-                <ul className="space-y-2">
-                  {selectedProject.breakdown?.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs text-[#ded5c7] font-sans">
-                      <CheckCircle2 size={15} className="text-[#c29b62] shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* ONLY render description if provided in user document */}
+                {selectedProject.description ? (
+                  <>
+                    <h4 className="font-serif text-lg text-[#f0e8db] mb-2">Descripción</h4>
+                    <p className="text-sm text-[#b5aa9b] font-sans leading-relaxed mb-4">
+                      {selectedProject.description}
+                    </p>
+                  </>
+                ) : (
+                  <div className="text-xs font-retro-mono text-[#8a8172]">
+                    // TRABAJO PERSONAL • MODELADO & ARTE DIGITAL
+                  </div>
+                )}
               </div>
 
-              {/* Technical specs sidebar */}
+              {/* Sidebar */}
               <div className="p-4 bg-[#1e1b18] rounded-lg border border-[#342e26] font-retro-mono text-xs space-y-3">
                 <div>
                   <span className="text-[#8a8072] block text-[10px] uppercase">Software Empleado</span>
@@ -322,16 +474,6 @@ export default function Gallery({ onSound }) {
                   </div>
                 </div>
 
-                <div>
-                  <span className="text-[#8a8072] block text-[10px] uppercase">Presupuesto Poligonal</span>
-                  <span className="text-[#f0e9dc] font-bold">{selectedProject.polycount}</span>
-                </div>
-
-                <div>
-                  <span className="text-[#8a8072] block text-[10px] uppercase">Pipeline de Arte</span>
-                  <span className="text-[#b5ab9c]">High-to-Low Bake • PBR Texturing</span>
-                </div>
-
                 <div className="pt-2 border-t border-[#3b342b]">
                   <a
                     href="#contact"
@@ -339,7 +481,7 @@ export default function Gallery({ onSound }) {
                       setSelectedProject(null);
                       onSound?.('click');
                     }}
-                    className="block text-center py-2 bg-[#c29b62] hover:bg-[#d6af75] text-[#121110] font-bold rounded transition-colors text-xs uppercase"
+                    className="block text-center py-2 bg-[#c29b62] hover:bg-[#d6af75] text-[#121110] font-bold rounded transition-colors text-xs uppercase font-retro-mono"
                   >
                     Cotizar Proyecto Similar
                   </a>

@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
-import VintageAdLookbook from './components/VintageAdLookbook';
 import ExperienceEducation from './components/ExperienceEducation';
 import SkillsMatrix from './components/SkillsMatrix';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import { playRetroSound } from './utils/audio';
+import { translations } from './utils/translations';
 
 export default function App() {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [crtEnabled, setCrtEnabled] = useState(true);
-  const [activeModel, setActiveModel] = useState('gameboy'); // 'gameboy' | 'vintageMac' | 'fragrance'
+  const [lang, setLang] = useState(() => {
+    try {
+      return localStorage.getItem('yosiel_lang') || 'es';
+    } catch {
+      return 'es';
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('yosiel_lang', lang);
+    } catch (e) {
+      // ignore
+    }
+  }, [lang]);
 
   const handleSound = (type = 'click') => {
     playRetroSound(type, soundEnabled);
   };
+
+  const t = translations[lang] || translations.es;
 
   return (
     <div id="top" className="relative min-h-screen bg-[#0f0e0d] text-[#e7e1d5] selection:bg-[#c29b62] selection:text-[#121110]">
@@ -38,28 +54,50 @@ export default function App() {
           setSoundEnabled={setSoundEnabled}
           crtEnabled={crtEnabled}
           setCrtEnabled={setCrtEnabled}
+          lang={lang}
+          setLang={setLang}
+          t={t.navbar}
           onSound={handleSound}
         />
 
         <main className="flex-1">
           <Hero
-            activeModel={activeModel}
-            setActiveModel={setActiveModel}
+            lang={lang}
+            t={t.hero}
             onSound={handleSound}
           />
 
-          <Gallery onSound={handleSound} />
+          <Gallery
+            lang={lang}
+            t={t.gallery}
+            onSound={handleSound}
+          />
 
-          <VintageAdLookbook onSound={handleSound} />
+          <ExperienceEducation
+            lang={lang}
+            setLang={setLang}
+            t={t.experience}
+            onSound={handleSound}
+          />
 
-          <ExperienceEducation onSound={handleSound} />
+          <SkillsMatrix
+            lang={lang}
+            t={t.skills}
+            onSound={handleSound}
+          />
 
-          <SkillsMatrix onSound={handleSound} />
-
-          <ContactSection onSound={handleSound} />
+          <ContactSection
+            lang={lang}
+            t={t.contact}
+            onSound={handleSound}
+          />
         </main>
 
-        <Footer onSound={handleSound} />
+        <Footer
+          lang={lang}
+          t={t.footer}
+          onSound={handleSound}
+        />
       </div>
     </div>
   );
